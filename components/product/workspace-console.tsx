@@ -50,9 +50,9 @@ export function WorkspaceConsole() {
 
       {/* Main Container Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[580px]">
-        {/* Left Panel - Workspace Navigation (Columns: 2.5) */}
+        {/* Left Panel - Workspace Navigation (Columns: 2) */}
         <div
-          className="lg:col-span-2.5 p-4 flex flex-col gap-6"
+          className="lg:col-span-2 p-4 flex flex-col gap-6"
           style={{
             background: "rgb(11, 12, 14)",
             borderRight: "1px solid rgb(28, 32, 38)"
@@ -117,9 +117,9 @@ export function WorkspaceConsole() {
           </div>
         </div>
 
-        {/* Middle Panel - Editor / Graph (Columns: 6.5) */}
+        {/* Middle Panel - Editor / Graph (Columns: 7) */}
         <div
-          className="lg:col-span-6.5 flex flex-col justify-between"
+          className="lg:col-span-7 flex flex-col justify-between"
           style={{
             borderRight: "1px solid rgb(28, 32, 38)"
           }}
@@ -166,7 +166,7 @@ export function WorkspaceConsole() {
               <img
                 src="/images/console-graph.svg"
                 alt="Lattice Workspace Capital Flow Diagram"
-                className="w-full h-auto max-h-[300px] object-contain select-none"
+                className="w-full h-auto max-h-[450px] object-contain select-none"
               />
             </div>
 
