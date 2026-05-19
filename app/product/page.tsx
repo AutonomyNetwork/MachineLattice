@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { WorkspaceConsole } from "@/components/product/workspace-console";
-import { StaggeredReveal, StaggeredItem } from "@/components/layout/reveal";
+import { StaggeredReveal, StaggeredItem, InteractiveCard } from "@/components/layout/reveal";
 
 export const metadata: Metadata = {
   title: "Product",
