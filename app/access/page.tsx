@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { StaggeredReveal, StaggeredItem } from "@/components/layout/reveal";
 
 const ECOSYSTEM_TYPES = [
   "L1 / L2 Chain",
@@ -38,53 +39,61 @@ export default function AccessPage() {
     <div className="relative max-w-7xl mx-auto px-6 pt-36 pb-24 overflow-visible">
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         {/* Left column */}
-        <div className="max-w-[480px] w-full">
-          <p className="section-label mb-6">ACCESS</p>
-          <h1
-            className="text-3xl md:text-[56px] lg:text-[56px] font-light leading-[1.05] mb-6 text-white tracking-tight"
-            style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
-          >
-            Machine Lattice is{" "}
-            <span className="italic block text-[#6B6B7A] mt-1 font-light">
-              in private deployment.
-            </span>
-          </h1>
-          <p className="text-sm text-ml-text-secondary leading-relaxed mb-10 font-sans">
-            We work directly with ecosystem teams, treasuries, and founders who treat economic design as infrastructure. Tell us a little about what you&apos;re building.
-          </p>
+        <StaggeredReveal className="max-w-[480px] w-full">
+          <StaggeredItem>
+            <p className="section-label mb-6">ACCESS</p>
+          </StaggeredItem>
+          <StaggeredItem>
+            <h1
+              className="text-3xl md:text-[56px] lg:text-[56px] font-light leading-[1.05] mb-6 text-white tracking-tight"
+              style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
+            >
+              Machine Lattice is{" "}
+              <span className="italic block text-[#6B6B7A] mt-1 font-light">
+                in private deployment.
+              </span>
+            </h1>
+          </StaggeredItem>
+          <StaggeredItem>
+            <p className="text-sm text-ml-text-secondary leading-relaxed mb-10 font-sans">
+              We work directly with ecosystem teams, treasuries, and founders who treat economic design as infrastructure. Tell us a little about what you&apos;re building.
+            </p>
+          </StaggeredItem>
 
           {/* System Status Table */}
-          <div className="border border-[rgb(28,32,38)] rounded-sm bg-transparent p-5 w-full">
-            <span className="mono-label text-[10px] text-ml-text-muted tracking-widest block mb-4 uppercase">
-              SYSTEM STATUS
-            </span>
-            <div className="space-y-0">
-              {/* Row 1 */}
-              <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
-                <span>RUNTIME</span>
-                <span className="text-[#C84B15] flex items-center gap-1.5 font-medium lowercase">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C84B15]" />
-                  online
-                </span>
-              </div>
-              {/* Row 2 */}
-              <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
-                <span>PARTNER DEPLOYMENTS</span>
-                <span className="text-ml-text-primary font-medium lowercase">11 active</span>
-              </div>
-              {/* Row 3 */}
-              <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
-                <span>RESEARCH PAPERS</span>
-                <span className="text-ml-text-primary font-medium lowercase">14 published</span>
-              </div>
-              {/* Row 4 */}
-              <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
-                <span>RESPONSE TIME</span>
-                <span className="text-ml-text-primary font-medium lowercase">&lt; 48h</span>
+          <StaggeredItem>
+            <div className="border border-[rgb(28,32,38)] rounded-sm bg-transparent p-5 w-full">
+              <span className="mono-label text-[10px] text-ml-text-muted tracking-widest block mb-4 uppercase">
+                SYSTEM STATUS
+              </span>
+              <div className="space-y-0">
+                {/* Row 1 */}
+                <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
+                  <span>RUNTIME</span>
+                  <span className="text-[#C84B15] flex items-center gap-1.5 font-medium lowercase">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C84B15]" />
+                    online
+                  </span>
+                </div>
+                {/* Row 2 */}
+                <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
+                  <span>PARTNER DEPLOYMENTS</span>
+                  <span className="text-ml-text-primary font-medium lowercase">11 active</span>
+                </div>
+                {/* Row 3 */}
+                <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
+                  <span>RESEARCH PAPERS</span>
+                  <span className="text-ml-text-primary font-medium lowercase">14 published</span>
+                </div>
+                {/* Row 4 */}
+                <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
+                  <span>RESPONSE TIME</span>
+                  <span className="text-ml-text-primary font-medium lowercase">&lt; 48h</span>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </StaggeredItem>
+        </StaggeredReveal>
 
         {/* Right column: Form */}
         <div className="bg-[rgb(17,19,23)] border border-[rgb(28,32,38)] p-8 rounded-sm max-w-xl lg:w-full">
