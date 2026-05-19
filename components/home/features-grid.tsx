@@ -18,7 +18,6 @@ export function FeaturesGrid() {
       }
     })
   };
-  const [animated, setAnimated] = useState(false);
 
   useEffect(() => {
     setAnimated(true);
