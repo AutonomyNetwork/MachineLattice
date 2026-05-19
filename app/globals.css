@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 4%;
+    --foreground: 240 5% 94%;
+    --card: 240 8% 7%;
+    --card-foreground: 240 5% 90%;
+    --popover: 240 8% 7%;
+    --popover-foreground: 240 5% 90%;
+    --primary: 18 82% 43%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 6% 10%;
+    --secondary-foreground: 240 5% 80%;
+    --muted: 240 6% 10%;
+    --muted-foreground: 240 5% 55%;
+    --accent: 18 82% 43%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 13%;
+    --input: 240 6% 13%;
+    --ring: 18 82% 43%;
+    --radius: 0.25rem;
+
+    --font-geist: 'Geist', system-ui, sans-serif;
+    --font-fraunces: 'Fraunces', Georgia, serif;
+    --font-jetbrains: 'JetBrains Mono', Menlo, monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-geist), sans-serif;
+    background-color: rgb(10, 11, 13);
+    color: rgb(230, 232, 235);
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* Global heading overrides: font-weight 300, line-height 1.05 */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 300 !important;
+    line-height: 1.05 !important;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: rgba(200, 75, 21, 0.3);
+    color: #F0F0F0;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0A0F;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1E1E28;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #C84B15;
+  }
+}
+
+@layer components {
+  /* Section label - monospace uppercase orange */
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    @apply font-mono uppercase text-ml-orange flex items-center gap-2;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background-color: #C84B15;
+    flex-shrink: 0;
+  }
+
+  /* Hero heading - serif large */
+  .hero-heading {
+    font-family: var(--font-fraunces);
+    @apply text-5xl md:text-6xl lg:text-7xl font-normal leading-tight text-ml-text-primary;
+  }
+
+  .hero-heading-italic {
+    font-family: var(--font-fraunces);
+    @apply text-5xl md:text-6xl lg:text-7xl italic font-normal leading-tight;
+    color: #6B6B7A;
+  }
+
+  /* Mono label */
+  .mono-label {
+    font-family: var(--font-jetbrains);
+    @apply text-xs tracking-wider uppercase;
+  }
+
+  /* Card base */
+  .ml-card {
+    @apply bg-ml-bg-card border border-ml-bg-border rounded-sm;
+  }
+
+  /* Sim card */
+  .sim-id {
+    font-family: var(--font-jetbrains);
+    @apply text-xs font-medium text-ml-orange;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply relative text-sm text-ml-text-secondary hover:text-ml-text-primary transition-colors duration-200;
+  }
+  .nav-link.active {
+    @apply text-ml-text-primary;
+  }
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #C84B15;
+  }
+
+  /* Button primary - greyish border by default, turns orange on hover */
+  .btn-primary {
+    @apply border border-white/20 hover:border-ml-orange bg-transparent text-white hover:text-ml-orange text-[10.5px] font-mono tracking-wider uppercase px-4 py-2 transition-all duration-200 rounded-sm inline-flex items-center justify-center gap-2;
+  }
+
+  /* Button outline - dim border by default, turns orange on hover */
+  .btn-outline {
+    @apply border border-white/10 hover:border-ml-orange bg-transparent text-ml-text-primary hover:text-ml-orange text-[10.5px] font-mono tracking-wider uppercase px-4 py-2 transition-all duration-200 rounded-sm inline-flex items-center justify-center gap-2;
+  }
+
+  /* Filter tab */
+  .filter-tab {
+    @apply text-sm text-ml-text-secondary hover:text-ml-text-primary border border-transparent px-4 py-1.5 transition-all duration-150 cursor-pointer;
+  }
+  .filter-tab.active {
+    @apply text-ml-text-primary border-ml-bg-border;
+  }
+
+  /* Divider line */
+  .ml-divider {
+    @apply border-t border-ml-bg-border;
+  }
+
+  /* Stat value */
+  .stat-value {
+    font-family: var(--font-fraunces);
+    @apply text-3xl text-ml-text-primary;
+  }
+
+  /* Positive/negative deltas */
+  .delta-positive {
+    font-family: var(--font-jetbrains);
+    @apply text-xs text-ml-orange;
+  }
+  .delta-negative {
+    font-family: var(--font-jetbrains);
+    @apply text-xs text-ml-text-muted;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+}
