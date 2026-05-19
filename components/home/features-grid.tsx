@@ -7,12 +7,13 @@ export function FeaturesGrid() {
   const [animated, setAnimated] = useState(false);
 
   const textVariants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 15, filter: "blur(8px)" },
     visible: (custom: number) => ({
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: { 
-        duration: 0.8, 
+        duration: 0.9, 
         delay: custom * 0.15,
         ease: [0.16, 1, 0.3, 1] 
       }

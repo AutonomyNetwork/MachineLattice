@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { StaggeredReveal, StaggeredItem } from "@/components/layout/reveal";
+import { StaggeredReveal, StaggeredItem, InteractiveRow } from "@/components/layout/reveal";
 
 export const metadata: Metadata = {
   title: "Research",
@@ -79,35 +79,34 @@ export default function ResearchPage() {
       {/* Papers list */}
       <div className="divide-y divide-[rgb(28,32,38)]">
         {PAPERS.map(({ id, year, month, title, description, readTime }) => (
-          <div
-            key={id}
-            className="group py-8 grid grid-cols-1 md:grid-cols-[100px_100px_1fr_90px] gap-4 items-start hover:bg-[rgb(14,16,19)] px-4 -mx-4 transition-all duration-300 cursor-pointer rounded-sm"
-          >
-            {/* Orange ID label */}
-            <span className="text-[10px] font-semibold text-[#C84B15] tracking-wider font-mono">
-              {id}
-            </span>
-            {/* Date label */}
-            <span className="text-[11px] text-[#6B6B7A] tracking-wider font-mono">
-              {year} · {month}
-            </span>
-            {/* Title & Description Column */}
-            <div className="space-y-1.5">
-              <h2
-                className="text-[24px] font-light text-white group-hover:text-[#C84B15] transition-colors duration-200 leading-[1.05] tracking-tight"
-                style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
-              >
-                {title}
-              </h2>
-              <p className="text-[14px] text-[#8A8A9A] leading-relaxed max-w-2xl">
-                {description}
-              </p>
+          <InteractiveRow key={id}>
+            <div className="group py-8 grid grid-cols-1 md:grid-cols-[100px_100px_1fr_90px] gap-4 items-start hover:bg-[rgb(14,16,19)] px-4 -mx-4 transition-all duration-300 cursor-pointer rounded-sm">
+              {/* Orange ID label */}
+              <span className="text-[10px] font-semibold text-[#C84B15] tracking-wider font-mono">
+                {id}
+              </span>
+              {/* Date label */}
+              <span className="text-[11px] text-[#6B6B7A] tracking-wider font-mono">
+                {year} · {month}
+              </span>
+              {/* Title & Description Column */}
+              <div className="space-y-1.5">
+                <h2
+                  className="text-[24px] font-light text-white group-hover:text-[#C84B15] transition-colors duration-200 leading-[1.05] tracking-tight"
+                  style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
+                >
+                  {title}
+                </h2>
+                <p className="text-[14px] text-[#8A8A9A] leading-relaxed max-w-2xl">
+                  {description}
+                </p>
+              </div>
+              {/* Read Time with dynamic orange hover arrow */}
+              <span className="text-[10px] text-[#6B6B7A] group-hover:text-white transition-colors duration-200 font-mono tracking-widest text-right flex items-center justify-end gap-1.5">
+                {readTime} <span className="text-[#6B6B7A] group-hover:text-[#C84B15] transition-colors duration-200">→</span>
+              </span>
             </div>
-            {/* Read Time with dynamic orange hover arrow */}
-            <span className="text-[10px] text-[#6B6B7A] group-hover:text-white transition-colors duration-200 font-mono tracking-widest text-right flex items-center justify-end gap-1.5">
-              {readTime} <span className="text-[#6B6B7A] group-hover:text-[#C84B15] transition-colors duration-200">→</span>
-            </span>
-          </div>
+          </InteractiveRow>
         ))}
       </div>
     </div>

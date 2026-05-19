@@ -82,66 +82,65 @@ export default function ProductPage() {
         }}
       >
         {RUNTIMES.map(({ label, title, bullets }) => (
-          <div
-            key={label}
-            className="bg-ml-bg p-8 flex flex-col justify-between"
-          >
-            <div>
-              <p 
-                style={{
-                  fontFamily: '"JetBrains Mono", ui-monospace, monospace',
-                  letterSpacing: "0.04em",
-                  fontSize: "11px",
-                  textTransform: "uppercase",
-                  color: "rgb(192, 74, 27)",
-                  marginBottom: "0px"
-                }}
-              >
-                {label}
-              </p>
-              <div 
-                style={{
-                  fontFamily: "Geist, sans-serif",
-                  fontSize: "18px",
-                  fontWeight: 500,
-                  color: "rgb(230, 232, 235)",
-                  margin: "0px 0px 18px",
-                  lineHeight: 1.3
-                }}
-              >
-                {title}
-              </div>
-              <ul className="space-y-0">
-                {bullets.map((bullet) => (
-                  <li
-                    key={bullet}
-                    style={{
-                      fontFamily: "Geist, sans-serif",
-                      fontSize: "13px",
-                      color: "rgb(139, 144, 152)",
-                      padding: "8px 0px",
-                      borderTop: "1px solid rgb(28, 32, 38)",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "10px",
-                      fontWeight: 300
-                    }}
-                  >
-                    <span 
+          <InteractiveCard key={label}>
+            <div className="bg-ml-bg p-8 flex flex-col justify-between h-full">
+              <div>
+                <p 
+                  style={{
+                    fontFamily: '"JetBrains Mono", ui-monospace, monospace',
+                    letterSpacing: "0.04em",
+                    fontSize: "11px",
+                    textTransform: "uppercase",
+                    color: "rgb(192, 74, 27)",
+                    marginBottom: "0px"
+                  }}
+                >
+                  {label}
+                </p>
+                <div 
+                  style={{
+                    fontFamily: "Geist, sans-serif",
+                    fontSize: "18px",
+                    fontWeight: 500,
+                    color: "rgb(230, 232, 235)",
+                    margin: "0px 0px 18px",
+                    lineHeight: 1.3
+                  }}
+                >
+                  {title}
+                </div>
+                <ul className="space-y-0">
+                  {bullets.map((bullet) => (
+                    <li
+                      key={bullet}
                       style={{
-                        width: "3px",
-                        height: "3px",
-                        background: "rgb(62, 72, 83)",
-                        display: "inline-block",
-                        flexShrink: 0
+                        fontFamily: "Geist, sans-serif",
+                        fontSize: "13px",
+                        color: "rgb(139, 144, 152)",
+                        padding: "8px 0px",
+                        borderTop: "1px solid rgb(28, 32, 38)",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        fontWeight: 300
                       }}
-                    />
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
+                    >
+                      <span 
+                        style={{
+                          width: "3px",
+                          height: "3px",
+                          background: "rgb(62, 72, 83)",
+                          display: "inline-block",
+                          flexShrink: 0
+                        }}
+                      />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
+          </InteractiveCard>
         ))}
       </div>
 
