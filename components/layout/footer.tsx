@@ -9,16 +9,22 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
           {/* Brand info */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="grid grid-cols-2 gap-[3px] w-6 h-6">
-                <div className="bg-[#C84B15] rounded-[1px]" />
-                <div className="bg-[#C84B15]/60 rounded-[1px]" />
-                <div className="bg-[#C84B15]/30 rounded-[1px]" />
-                <div className="bg-[#C84B15]/60 rounded-[1px]" />
+            <Link href="/" className="flex items-center gap-3 group">
+              {/* Left Side Icon Placeholder */}
+              <img 
+                src="/images/logo-icon.svg" 
+                alt="Machine Lattice" 
+                className="w-8 h-8 object-contain" 
+              />
+              {/* Right Side Text */}
+              <div className="flex flex-col justify-center">
+                <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
+                  Machine
+                </span>
+                <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
+                  Lattice
+                </span>
               </div>
-              <span className="text-sm font-semibold tracking-tight text-ml-text-primary">
-                Machine Lattice
-              </span>
             </Link>
             <p className="text-xs text-ml-text-secondary leading-relaxed max-w-[240px]">
               Economic simulation infrastructure for blockchain ecosystems.

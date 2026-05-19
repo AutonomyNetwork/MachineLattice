@@ -59,16 +59,22 @@ export function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="grid grid-cols-2 gap-[3px] w-7 h-7">
-            <div className="bg-ml-orange rounded-[2px] transition-all duration-200 group-hover:bg-ml-orange-light" />
-            <div className="bg-ml-orange/60 rounded-[2px] transition-all duration-200 group-hover:bg-ml-orange" />
-            <div className="bg-ml-orange/30 rounded-[2px] transition-all duration-200 group-hover:bg-ml-orange/60" />
-            <div className="bg-ml-orange/60 rounded-[2px] transition-all duration-200 group-hover:bg-ml-orange" />
+        <Link href="/" className="flex items-center gap-3 group">
+          {/* Left Side Icon Placeholder */}
+          <img 
+            src="/images/logo-icon.svg" 
+            alt="Machine Lattice" 
+            className="w-8 h-8 object-contain" 
+          />
+          {/* Right Side Text */}
+          <div className="flex flex-col justify-center">
+            <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
+              Machine
+            </span>
+            <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
+              Lattice
+            </span>
           </div>
-          <span className="text-sm font-medium text-ml-text-primary tracking-tight">
-            Machine Lattice
-          </span>
         </Link>
 
         {/* Desktop Nav */}

@@ -1,8 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export function FeaturesGrid() {
+  const [animated, setAnimated] = useState(false);
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 15 },
+    visible: (custom: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { 
+        duration: 0.8, 
+        delay: custom * 0.15,
+        ease: [0.16, 1, 0.3, 1] 
+      }
+    })
+  };
   const [animated, setAnimated] = useState(false);
 
   useEffect(() => {
@@ -13,7 +28,13 @@ export function FeaturesGrid() {
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-[#181822] rounded-sm overflow-hidden border border-[#181822]">
       {/* 01 / CAPITAL */}
       <div className="bg-[#0A0A0F] p-8 flex flex-col justify-between h-[360px] group transition-all duration-300 hover:bg-[rgb(14,16,19)]">
-        <div>
+        <motion.div
+          custom={0}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={textVariants}
+        >
           <p 
             style={{
               fontFamily: '"JetBrains Mono", ui-monospace, monospace',
@@ -42,7 +63,7 @@ export function FeaturesGrid() {
           <p className="text-[12.5px] text-ml-text-secondary leading-relaxed max-w-[270px]">
             Run wallet-level simulations across emissions, liquidity routes, and treasury strategies. See outcomes before committing them on-chain.
           </p>
-        </div>
+        </motion.div>
         
         {/* SVG Graphic - Bar Chart */}
         <div className="w-full mt-6 h-28 flex items-end">
@@ -95,7 +116,13 @@ export function FeaturesGrid() {
 
       {/* 02 / GOVERNANCE */}
       <div className="bg-[#0A0A0F] p-8 flex flex-col justify-between h-[360px] group transition-all duration-300 hover:bg-[rgb(14,16,19)]">
-        <div>
+        <motion.div
+          custom={1}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={textVariants}
+        >
           <p 
             style={{
               fontFamily: '"JetBrains Mono", ui-monospace, monospace',
@@ -124,7 +151,7 @@ export function FeaturesGrid() {
           <p className="text-[12.5px] text-ml-text-secondary leading-relaxed max-w-[270px]">
             Operational runtime for governance behavior, incentive design, and capital coordination across protocols and L2 ecosystems.
           </p>
-        </div>
+        </motion.div>
 
         {/* SVG Graphic - Overlapping Waves */}
         <div className="w-full mt-6 h-28">
@@ -165,7 +192,13 @@ export function FeaturesGrid() {
 
       {/* 03 / ENGINE */}
       <div className="bg-[#0A0A0F] p-8 flex flex-col justify-between h-[360px] group transition-all duration-300 hover:bg-[rgb(14,16,19)]">
-        <div>
+        <motion.div
+          custom={2}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={textVariants}
+        >
           <p 
             style={{
               fontFamily: '"JetBrains Mono", ui-monospace, monospace',
@@ -194,7 +227,7 @@ export function FeaturesGrid() {
           <p className="text-[12.5px] text-ml-text-secondary leading-relaxed max-w-[270px]">
             Translate simulation outputs into deployment-ready economic decisions. Built for ecosystem teams who can&apos;t afford to guess.
           </p>
-        </div>
+        </motion.div>
 
         {/* SVG Graphic - Heatmap Grid */}
         <div className="w-full mt-6 h-28 flex flex-col justify-between">
