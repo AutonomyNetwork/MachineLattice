@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 interface Node {
   id: string;
@@ -16,30 +16,24 @@ interface Edge {
 }
 
 const NODES: Node[] = [
-  { id: "DAO", x: 420, y: 70 },
-  { id: "LP-A", x: 320, y: 120 },
-  { id: "GOV", x: 500, y: 130 },
-  { id: "VLT", x: 470, y: 220 },
-  { id: "TRSY", x: 300, y: 230 },
-  { id: "LP-B", x: 140, y: 210 },
-  { id: "AMM", x: 220, y: 150, active: true },
-  { id: "ORC", x: 120, y: 90 },
+  { id: "TRSY", x: 180, y: 100 },
+  { id: "LP-A", x: 350, y: 80 },
+  { id: "DAO", x: 480, y: 110 },
+  { id: "GOV", x: 550, y: 180 },
+  { id: "VLT", x: 420, y: 240 },
+  { id: "AMM", x: 280, y: 210, active: true },
+  { id: "ORC", x: 150, y: 260 },
 ];
 
 const EDGES: Edge[] = [
-  { from: "AMM", to: "DAO", highlight: true },
-  { from: "AMM", to: "LP-A", highlight: true },
-  { from: "AMM", to: "GOV", highlight: true },
-  { from: "AMM", to: "VLT", highlight: true },
-  { from: "AMM", to: "TRSY", highlight: true },
-  { from: "AMM", to: "LP-B" },
-  { from: "AMM", to: "ORC" },
-  { from: "DAO", to: "GOV" },
+  { from: "TRSY", to: "AMM" },
+  { from: "ORC", to: "AMM" },
+  { from: "TRSY", to: "LP-A" },
   { from: "LP-A", to: "DAO" },
+  { from: "DAO", to: "GOV" },
   { from: "GOV", to: "VLT" },
-  { from: "VLT", to: "TRSY" },
-  { from: "TRSY", to: "LP-B" },
-  { from: "LP-B", to: "ORC" },
+  { from: "VLT", to: "AMM" },
+  { from: "AMM", to: "LP-A" },
 ];
 
 const STATS = [
@@ -53,29 +47,15 @@ function nodeById(id: string) {
 }
 
 export function SimulationPreview() {
-  const svgRef = useRef<SVGSVGElement>(null);
+  const [activeGroup, setActiveGroup] = useState(0);
 
   useEffect(() => {
-    // Animate highlighted paths on load
-    const paths = svgRef.current?.querySelectorAll(".hl-path");
-    paths?.forEach((p) => {
-      const el = p as SVGLineElement;
-      const x1 = Number(el.getAttribute("x1"));
-      const y1 = Number(el.getAttribute("y1"));
-      const x2 = Number(el.getAttribute("x2"));
-      const y2 = Number(el.getAttribute("y2"));
-      const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-
-      el.style.strokeDasharray = String(length);
-      el.style.strokeDashoffset = String(length);
-      el.style.transition = "stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1)";
-      
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          el.style.strokeDashoffset = "0";
-        }, 100);
-      });
-    });
+    // Cycle the highlighted edges every 3 seconds
+    const interval = setInterval(() => {
+      setActiveGroup((prev) => (prev + 1) % (EDGES.length / 2));
+    }, 3000);
+    
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -96,7 +76,6 @@ export function SimulationPreview() {
       {/* Graph */}
       <div className="relative bg-[#09090D]" style={{ height: 260 }}>
         <svg
-          ref={svgRef}
           viewBox="0 0 640 300"
           className="w-full h-full animate-fade-in"
           preserveAspectRatio="xMidYMid meet"
@@ -109,31 +88,33 @@ export function SimulationPreview() {
           </defs>
           <rect width="640" height="300" fill="url(#card-grid)" />
 
-          {/* Regular edges */}
-          {EDGES.filter((e) => !e.highlight).map((e, i) => {
+          {/* All edges and moving dots */}
+          {EDGES.map((e, i) => {
             const a = nodeById(e.from);
             const b = nodeById(e.to);
+            const isHl = Math.floor(i / 2) === activeGroup;
             return (
-              <line
-                key={i}
-                x1={a.x} y1={a.y} x2={b.x} y2={b.y}
-                stroke="#1F1F2F" strokeWidth="1"
-              />
-            );
-          })}
-
-          {/* Highlight edges */}
-          {EDGES.filter((e) => e.highlight).map((e, i) => {
-            const a = nodeById(e.from);
-            const b = nodeById(e.to);
-            return (
-              <line
-                key={`hl-${i}`}
-                className="hl-path"
-                x1={a.x} y1={a.y} x2={b.x} y2={b.y}
-                stroke="#C84B15" strokeWidth="1.5"
-                strokeOpacity="0.85"
-              />
+              <g key={`edge-${i}`}>
+                <line
+                  className="transition-all duration-1000"
+                  x1={a.x} y1={a.y} x2={b.x} y2={b.y}
+                  stroke={isHl ? "#C84B15" : "#1F1F2F"} 
+                  strokeWidth={isHl ? "1.5" : "1"}
+                  strokeOpacity={isHl ? "0.85" : "1"}
+                />
+                {/* Moving dot */}
+                <circle 
+                  r={isHl ? "3" : "1.5"} 
+                  fill={isHl ? "#C84B15" : "#4A4A62"}
+                  className="transition-all duration-1000"
+                >
+                  <animateMotion 
+                    dur={`${2.5 + (i % 3) * 0.5}s`} 
+                    repeatCount="indefinite" 
+                    path={`M ${a.x} ${a.y} L ${b.x} ${b.y}`} 
+                  />
+                </circle>
+              </g>
             );
           })}
 

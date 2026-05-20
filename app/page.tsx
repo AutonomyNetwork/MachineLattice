@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SimulationPreview } from "@/components/home/simulation-preview";
 import { FeaturesGrid } from "@/components/home/features-grid";
+import { HeroAnimation } from "@/components/graphics/hero-animation";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="text-[#F0F0F5] min-h-screen relative z-10">
+      <HeroAnimation />
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-32 md:pt-40 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
