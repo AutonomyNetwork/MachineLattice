@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ConsoleGraph } from "@/components/graphics/console-graph";
 
 export function WorkspaceConsole() {
   const [activeTab, setActiveTab] = useState("scenario.lattice");
@@ -163,11 +164,7 @@ export function WorkspaceConsole() {
           <div className="flex-1 p-8 flex flex-col justify-between relative bg-black/[0.1]">
             {/* Graph Visualization Area */}
             <div className="w-full flex-1 flex items-center justify-center py-4">
-              <img
-                src="/images/console-graph.svg"
-                alt="Lattice Workspace Capital Flow Diagram"
-                className="w-full h-auto max-h-[450px] object-contain select-none"
-              />
+              <ConsoleGraph className="w-full h-auto max-h-[450px] object-contain select-none" />
             </div>
 
             {/* Bottom Status marker */}

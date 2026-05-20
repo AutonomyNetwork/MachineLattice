@@ -26,6 +26,16 @@ export function FeaturesGrid() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-px bg-[#181822] rounded-sm overflow-hidden border border-[#181822]">
+      <style>{`
+        @keyframes subtle-pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+        @keyframes subtle-bob {
+          0%, 100% { transform: scaleY(1); }
+          50% { transform: scaleY(1.15); }
+        }
+      `}</style>
       {/* 01 / CAPITAL */}
       <div className="bg-[#0A0A0F] p-8 flex flex-col justify-between h-[360px] group transition-all duration-300 hover:bg-[rgb(14,16,19)]">
         <motion.div
@@ -94,19 +104,22 @@ export function FeaturesGrid() {
               { x: 250, h: 10, active: false },
               { x: 270, h: 5, active: false },
             ].map((bar, i) => {
-              const height = animated ? bar.h : 0;
-              const y = 95 - height;
               return (
                 <rect
                   key={i}
                   x={bar.x}
-                  y={y}
+                  y={95 - bar.h}
                   width="10"
-                  height={height}
+                  height={bar.h}
                   fill={bar.active ? "url(#barGrad)" : "#181824"}
                   rx="1"
-                  className="transition-all duration-1000 ease-out"
-                  style={{ transitionDelay: `${i * 40}ms` }}
+                  style={{ 
+                    transformOrigin: "bottom",
+                    transformBox: "fill-box",
+                    transform: animated ? "scaleY(1)" : "scaleY(0)",
+                    transition: `transform 1000ms ease-out ${i * 40}ms`,
+                    animation: animated ? `subtle-bob ${2 + (i % 3) * 0.5}s infinite ease-in-out ${1 + i * 0.04}s` : "none"
+                  }}
                 />
               );
             })}
@@ -182,8 +195,18 @@ export function FeaturesGrid() {
             {/* Decorative points */}
             {animated && (
               <>
-                <circle cx="150" cy="70" r="3" fill="#C84B15" />
-                <circle cx="215" cy="53" r="3" fill="#C84B15" />
+                <defs>
+                  <filter id="wave-glow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+                <circle r="3" fill="#C84B15" filter="url(#wave-glow)">
+                  <animateMotion dur="4s" repeatCount="indefinite" path="M 10 75 Q 75 10 150 75 T 290 50" />
+                </circle>
+                <circle r="2" fill="#C84B15" opacity="0.6" filter="url(#wave-glow)">
+                  <animateMotion dur="5.5s" repeatCount="indefinite" path="M 10 75 Q 75 25 150 65 T 290 60" />
+                </circle>
               </>
             )}
           </svg>
@@ -239,14 +262,16 @@ export function FeaturesGrid() {
               0.1, 0.4, 0.5, 0.3, 0.1, 0.1, 0.2, 0.1
             ].map((opacity, idx) => {
               const currentOpacity = animated ? opacity : 0.05;
+              const isHighlight = currentOpacity > 0.3;
               return (
                 <div
                   key={idx}
                   className="aspect-video rounded-[1px] transition-all duration-1000 ease-out"
                   style={{
-                    backgroundColor: currentOpacity > 0.3 ? `rgba(200, 75, 21, ${currentOpacity})` : `rgba(28, 28, 40, ${currentOpacity * 2})`,
+                    backgroundColor: isHighlight ? `rgba(200, 75, 21, ${currentOpacity})` : `rgba(28, 28, 40, ${currentOpacity * 2})`,
                     border: `1px solid rgba(28, 28, 40, ${currentOpacity})`,
-                    transitionDelay: `${(idx % 8) * 50 + Math.floor(idx / 8) * 80}ms`
+                    transitionDelay: `${(idx % 8) * 50 + Math.floor(idx / 8) * 80}ms`,
+                    animation: (animated && isHighlight) ? `subtle-pulse ${2 + (idx % 3)}s infinite ease-in-out ${idx * 0.1}s` : "none"
                   }}
                 />
               );

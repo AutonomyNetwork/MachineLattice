@@ -10,89 +10,212 @@ const SIMULATIONS = [
     title: "Emission curve compression — L2 rollup",
     tags: ["EMISSIONS", "L2"],
     category: "Emissions",
-    chart: "wave",
+    chart: "lines",
     epochs: "250",
     wallets: "12.4k",
     outcome: "+18.4% retention",
-    positive: true,
+    outcomeColor: "#C04A1B",
   },
   {
     id: "SIM-0138",
     title: "Treasury rebalance under liquidity shock",
     tags: ["TREASURY", "STRESS"],
     category: "Treasury",
-    chart: "wave",
+    chart: "sine",
+    epochs: "180",
+    wallets: "4.8k",
+    outcome: "-6.2% drawdown",
+    outcomeColor: "#5FB5A6",
+  },
+  {
+    id: "SIM-0134",
+    title: "Governance delegation concentration",
+    tags: ["GOVERNANCE", "DAO"],
+    category: "Governance",
+    chart: "bars",
     epochs: "120",
-    wallets: "8.2k",
-    outcome: "-1.1% slippage",
-    positive: false,
+    wallets: "31.2k",
+    outcome: "Gini 0.71 → 0.54",
+    outcomeColor: "#C04A1B",
   },
   {
     id: "SIM-0131",
-    title: "Delegate concentration — post-airdrop DAO",
-    tags: ["GOVERNANCE", "DAO"],
-    category: "Governance",
-    chart: "wave",
-    epochs: "500",
-    wallets: "4.1k",
-    outcome: "+0.8% voting power",
-    positive: true,
+    title: "Sybil-resistant launchpad allocation",
+    tags: ["LAUNCH", "SYBIL"],
+    category: "Launch",
+    chart: "heatmap",
+    epochs: "90",
+    wallets: "84.0k",
+    outcome: "Sybil yield -41%",
+    outcomeColor: "#C04A1B",
   },
   {
     id: "SIM-0127",
-    title: "Sybil-resistant liquidity bootstrapping",
-    tags: ["LIQUIDITY", "LAUNCH"],
+    title: "Cross-chain liquidity migration model",
+    tags: ["LIQUIDITY", "X-CHAIN"],
     category: "Liquidity",
-    chart: "wave",
-    epochs: "180",
-    wallets: "24.5k",
-    outcome: "+5.4% efficiency",
-    positive: true,
+    chart: "lines",
+    epochs: "200",
+    wallets: "6.1k",
+    outcome: "Migration t≈42d",
+    outcomeColor: "#5FB5A6",
   },
   {
-    id: "SIM-0119",
-    title: "Quorum decay under voter fatigue",
-    tags: ["GOVERNANCE"],
-    category: "Governance",
-    chart: "wave",
-    epochs: "320",
-    wallets: "1.8k",
-    outcome: "-2.3% participation",
-    positive: false,
-  },
-  {
-    id: "SIM-0114",
-    title: "Token launch emission schedule — L1 mainnet",
-    tags: ["EMISSIONS", "LAUNCH"],
-    category: "Emissions",
-    chart: "wave",
-    epochs: "150",
-    wallets: "15.0k",
-    outcome: "+1.9% accuracy",
-    positive: true,
+    id: "SIM-0124",
+    title: "Restaking yield-curve scenario set",
+    tags: ["RESTAKING"],
+    category: "Treasury",
+    chart: "sine",
+    epochs: "300",
+    wallets: "9.4k",
+    outcome: "12 scenarios mapped",
+    outcomeColor: "#C04A1B",
   },
 ];
 
-function MiniChart({ positive }: { positive: boolean }) {
+function MiniChartLines() {
   return (
-    <svg viewBox="0 0 300 100" className="w-full h-20 my-4 select-none">
-      {/* Top thick line (slopes up slightly if positive, slopes down if negative) */}
-      <path
-        d={positive ? "M 10,48 L 290,36" : "M 10,36 L 290,48"}
-        fill="none"
-        stroke="#C84B15"
-        strokeWidth="6"
-        strokeLinecap="round"
+    <svg viewBox="0 0 300 100" className="w-full h-24 my-4 select-none">
+      <defs>
+        <filter id="dot-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+      <path d="M 10,70 L 290,80" fill="none" stroke="#2A2F3A" strokeWidth="8" strokeLinecap="round" />
+      <path id="line-path" d="M 10,50 L 290,40" fill="none" stroke="#C04A1B" strokeWidth="8" strokeLinecap="round" />
+      {/* Moving dot marquee animation */}
+      <circle r="2.5" fill="#F97316" filter="url(#dot-glow)">
+        <animateMotion dur="2.5s" repeatCount="indefinite" path="M 10,50 L 290,40" />
+      </circle>
+    </svg>
+  );
+}
+
+function MiniChartSine() {
+  return (
+    <svg viewBox="0 0 300 100" className="w-full h-24 my-4 select-none">
+      <defs>
+        <filter id="dot-glow-sine" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="blur" />
+          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+        </filter>
+      </defs>
+      <path 
+        d="M 10,50 Q 45,80 80,50 T 150,50 T 220,50 T 290,50" 
+        fill="none" 
+        stroke="#C04A1B" 
+        strokeWidth="2" 
+        strokeLinecap="round" 
       />
-      {/* Small highlight point */}
-      <circle cx={positive ? "110" : "180"} cy={positive ? "44" : "42"} r="3" fill="#C84B15" />
-      {/* Bottom thin line */}
-      <path
-        d={positive ? "M 10,64 L 290,78" : "M 10,78 L 290,64"}
-        fill="none"
-        stroke="#2A2F3A"
-        strokeWidth="2"
-      />
+      {/* Moving dot marquee animation */}
+      <circle r="2.5" fill="#F97316" filter="url(#dot-glow-sine)">
+        <animateMotion dur="3s" repeatCount="indefinite" path="M 10,50 Q 45,80 80,50 T 150,50 T 220,50 T 290,50" />
+      </circle>
+    </svg>
+  );
+}
+
+function MiniChartBars() {
+  const bars = [
+    { h: 45, c: "orange", dur: "2.1s" },
+    { h: 35, c: "grey", dur: "2.5s" },
+    { h: 25, c: "grey", dur: "1.9s" },
+    { h: 28, c: "orange", dur: "2.3s" },
+    { h: 40, c: "grey", dur: "2.7s" },
+    { h: 48, c: "grey", dur: "2.2s" },
+    { h: 48, c: "orange", dur: "2.6s" },
+    { h: 42, c: "grey", dur: "2.0s" },
+    { h: 20, c: "grey", dur: "2.4s" },
+    { h: 32, c: "orange", dur: "2.8s" },
+    { h: 38, c: "grey", dur: "2.1s" },
+    { h: 45, c: "grey", dur: "2.5s" },
+    { h: 48, c: "orange", dur: "2.3s" },
+    { h: 42, c: "grey", dur: "2.7s" },
+    { h: 35, c: "grey", dur: "2.2s" },
+    { h: 22, c: "orange", dur: "2.6s" },
+    { h: 35, c: "grey", dur: "2.0s" },
+    { h: 45, c: "grey", dur: "2.4s" },
+    { h: 48, c: "orange", dur: "2.8s" },
+    { h: 45, c: "grey", dur: "2.1s" },
+  ];
+  return (
+    <svg viewBox="0 0 300 100" className="w-full h-24 my-4 select-none">
+      {bars.map((b, i) => (
+        <rect
+          key={i}
+          x={10 + i * 14}
+          y={80 - b.h}
+          width="10"
+          height={b.h}
+          fill={b.c === "orange" ? "#C04A1B" : "#2A2F3A"}
+        >
+          <animate 
+            attributeName="height" 
+            values={`${b.h};${b.h + 10};${b.h}`} 
+            dur={b.dur} 
+            repeatCount="indefinite" 
+          />
+          <animate 
+            attributeName="y" 
+            values={`${80 - b.h};${80 - (b.h + 10)};${80 - b.h}`} 
+            dur={b.dur} 
+            repeatCount="indefinite" 
+          />
+        </rect>
+      ))}
+    </svg>
+  );
+}
+
+function MiniChartHeatmap() {
+  const pattern = [
+    "OOMVVMOMMMMVVMOMMMMV",
+    "MMVVGXMOOMXXVGMOOMXG",
+    "DMVGXXVDDMMXGVVDDMMV",
+    "VDGXXGVVDDXXGVDDXXGV"
+  ];
+  const colorMap: Record<string, string> = {
+    "O": "#C04A1B",
+    "M": "#9B3811",
+    "D": "#5A230F",
+    "G": "#3E4853",
+    "X": "#2A2F3A",
+    "V": "#15181D"
+  };
+
+  const cells = [];
+  for (let r = 0; r < 4; r++) {
+    for (let c = 0; c < 20; c++) {
+      const char = pattern[r][c];
+      const fill = colorMap[char];
+      
+      cells.push(
+        <rect
+          key={`${r}-${c}`}
+          x={10 + c * 14.5}
+          y={20 + r * 14.5}
+          width="12.5"
+          height="12.5"
+          fill={fill}
+        >
+          {/* Add a subtle fade animation for orange cells to make it feel alive */}
+          {(char === 'O' || char === 'M') && (
+            <animate
+              attributeName="opacity"
+              values="1;0.6;1"
+              dur={`${2 + (c % 3)}s`}
+              begin={`${(r + c) * 0.1}s`}
+              repeatCount="indefinite"
+            />
+          )}
+        </rect>
+      );
+    }
+  }
+  return (
+    <svg viewBox="0 0 300 100" className="w-full h-24 my-4 select-none">
+      {cells}
     </svg>
   );
 }
@@ -187,7 +310,10 @@ export function SimulationsList() {
               {sim.title}
             </div>
 
-            <MiniChart positive={sim.positive} />
+            {sim.chart === "lines" && <MiniChartLines />}
+            {sim.chart === "sine" && <MiniChartSine />}
+            {sim.chart === "bars" && <MiniChartBars />}
+            {sim.chart === "heatmap" && <MiniChartHeatmap />}
 
             {/* Divider */}
             <div className="border-t border-[rgb(28,32,38)] my-4" />
@@ -217,7 +343,7 @@ export function SimulationsList() {
                 <p 
                   className="text-[14px] font-mono font-medium"
                   style={{
-                    color: sim.positive ? "#C84B15" : "#E05A1F"
+                    color: sim.outcomeColor
                   }}
                 >
                   {sim.outcome}
