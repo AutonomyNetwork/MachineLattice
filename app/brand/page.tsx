@@ -165,9 +165,9 @@ export default function BrandPage() {
             </h2>
             <div className="prose prose-invert max-w-none text-[#8B9098] text-sm leading-relaxed space-y-6">
               <p>
-                You're free to use the Machine Lattice brand in the ecosystem, provided you adhere to these guidelines. 
+                You&apos;re free to use the Machine Lattice brand in the ecosystem, provided you adhere to these guidelines. 
                 By using any Machine Lattice trademarks, you agree to follow our instructions. Do not use the marks to impersonate Machine Lattice, 
-                our team, or to imply sponsorship, endorsement, or a partnership that doesn't exist.
+                our team, or to imply sponsorship, endorsement, or a partnership that doesn&apos;t exist.
               </p>
               
               <div>
