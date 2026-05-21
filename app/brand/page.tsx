@@ -40,7 +40,7 @@ export default function BrandPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Primary Logo */}
             <div className="border border-[#161622] rounded-sm bg-[#09090D] overflow-hidden group">
               <div className="h-48 flex items-center justify-center p-8 relative">
@@ -60,6 +60,32 @@ export default function BrandPage() {
                 <a 
                   href="/images/logo-icon.svg" 
                   download="Machine_Lattice_Icon.svg"
+                  className="px-4 py-2 bg-[#C84B15] hover:bg-[#E05619] text-black text-xs font-mono tracking-wider uppercase transition-colors rounded-sm"
+                >
+                  Download
+                </a>
+              </div>
+            </div>
+
+            {/* Full Logo */}
+            <div className="border border-[#161622] rounded-sm bg-[#09090D] overflow-hidden group">
+              <div className="h-48 flex items-center justify-center p-8 relative">
+                {/* Grid Background */}
+                <div 
+                  className="absolute inset-0 opacity-20 pointer-events-none" 
+                  style={{ backgroundImage: 'linear-gradient(#161622 1px, transparent 1px), linear-gradient(90deg, #161622 1px, transparent 1px)', backgroundSize: '20px 20px' }}
+                />
+                
+                <img src="/images/logo-full.png" alt="Machine Lattice Full Logo" className="h-10 relative z-10" />
+              </div>
+              <div className="border-t border-[#161622] p-4 flex items-center justify-between bg-[#0A0A0F]">
+                <div>
+                  <h3 className="text-sm font-medium">Full Logo</h3>
+                  <p className="text-xs text-[#8B9098] mt-1">PNG format</p>
+                </div>
+                <a 
+                  href="/images/logo-full.png" 
+                  download="Machine_Lattice_Logo.png"
                   className="px-4 py-2 bg-[#C84B15] hover:bg-[#E05619] text-black text-xs font-mono tracking-wider uppercase transition-colors rounded-sm"
                 >
                   Download

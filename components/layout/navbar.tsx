@@ -59,22 +59,12 @@ export function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          {/* Left Side Icon Placeholder */}
+        <Link href="/" className="flex items-center group">
           <img 
-            src="/images/logo-icon.svg" 
+            src="/images/logo-full.png" 
             alt="Machine Lattice" 
-            className="w-8 h-8 object-contain" 
+            className="h-7 object-contain" 
           />
-          {/* Right Side Text */}
-          <div className="flex flex-col justify-center">
-            <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
-              Machine
-            </span>
-            <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
-              Lattice
-            </span>
-          </div>
         </Link>
 
         {/* Desktop Nav */}

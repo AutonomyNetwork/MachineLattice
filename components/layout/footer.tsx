@@ -10,21 +10,11 @@ export function Footer() {
           {/* Brand info */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3 group">
-              {/* Left Side Icon Placeholder */}
               <img 
-                src="/images/logo-icon.svg" 
+                src="/images/logo-full.png" 
                 alt="Machine Lattice" 
-                className="w-8 h-8 object-contain" 
+                className="h-7 object-contain" 
               />
-              {/* Right Side Text */}
-              <div className="flex flex-col justify-center">
-                <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
-                  Machine
-                </span>
-                <span className="font-sans text-[13px] leading-[1.1] tracking-[0.06em] text-[#E6E8EB] uppercase font-light">
-                  Lattice
-                </span>
-              </div>
             </Link>
             <p className="text-xs text-ml-text-secondary leading-relaxed max-w-[240px]">
               Economic simulation infrastructure for blockchain ecosystems.
