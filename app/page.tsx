@@ -4,9 +4,26 @@ import { FeaturesGrid } from "@/components/home/features-grid";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Machine Lattice — Economic Simulation for Blockchain",
-  description:
-    "Simulate capital before you deploy it. Machine Lattice is economic simulation infrastructure for blockchain ecosystems.",
+  title: "Machine Lattice — Economic Simulation for Blockchain Ecosystems",
+  description: "Simulate capital before you deploy it. Model how liquidity, incentives, and governance will behave — before the chain decides for you.",
+  openGraph: {
+    title: "Simulate Capital Before You Deploy It — Machine Lattice",
+    description: "Economic simulation infrastructure for blockchain ecosystems. Model liquidity, incentives, and governance before deployment.",
+    images: [
+      {
+        url: "/images/og-home.png",
+        width: 1200,
+        height: 630,
+        alt: "Simulate Capital Before You Deploy It — Machine Lattice",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Simulate Capital Before You Deploy It — Machine Lattice",
+    description: "Economic simulation infrastructure for blockchain ecosystems. Model liquidity, incentives, and governance before deployment.",
+    images: ["/images/og-home.png"],
+  },
 };
 
 export default function HomePage() {
@@ -52,8 +69,8 @@ export default function HomePage() {
                 fontWeight: 300
               }}
             >
-              Machine Lattice is economic simulation infrastructure for blockchain ecosystems.
-              Model how liquidity, incentives, and governance will behave — before the chain decides for you.
+              Economic simulation infrastructure for blockchain ecosystems.
+              Model liquidity, incentives, and governance before the chain decides for you.
             </p>
 
             {/* CTA Buttons */}
@@ -61,7 +78,6 @@ export default function HomePage() {
               <Link
                 href="/access"
                 style={{
-                  background: "rgb(200, 75, 21)",
                   color: "black",
                   fontFamily: '"JetBrains Mono", ui-monospace, monospace',
                   fontSize: "11px",
@@ -74,12 +90,11 @@ export default function HomePage() {
                   alignItems: "center",
                   justifyContent: "center",
                   gap: "8px",
-                  transition: "background-color 0.2s"
                 }}
-                className="hover:bg-[rgb(220,95,31)]"
-              >
-                Explore the platform →
-              </Link>
+                className="bg-[#C84B15] hover:bg-[#E05619] whitespace-nowrap transition-colors duration-200"
+            >
+              Explore the platform →
+            </Link>
               <Link
                 href="/simulations"
                 style={{
@@ -106,8 +121,8 @@ export default function HomePage() {
             </div>
 
             {/* Bottom Fine Sub-label */}
-            <div className="flex items-center gap-2 font-mono text-[11px] tracking-[0.18em] text-[#6B6B7A] select-none border-t border-[#1E1E28]/40 pt-6">
-              <span className="text-[#C84B15]">REACTIVE ANALYTICS</span>
+            <div className="flex items-center gap-2 font-mono text-[10px] tracking-[0.18em] text-[#4A4A5E] select-none border-t border-[#1E1E28]/40 pt-6">
+              <span>REACTIVE ANALYTICS</span>
               <span>→</span>
               <span>PREDICTIVE ECONOMIC INTELLIGENCE</span>
             </div>
@@ -132,20 +147,20 @@ export default function HomePage() {
 
       {/* Built For banner section */}
       <section className="max-w-7xl mx-auto px-6 mb-24">
-        <div className="border-t border-b border-[#161622] py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="border-t border-b border-[#161622] py-6 flex flex-col gap-3">
           <span
             style={{
               fontFamily: '"JetBrains Mono", ui-monospace, monospace',
-              letterSpacing: "0.04em",
-              fontSize: "11px",
+              letterSpacing: "0.06em",
+              fontSize: "10px",
               textTransform: "uppercase",
-              color: "rgb(139, 144, 152)"
+              color: "rgb(100, 105, 112)"
             }}
             className="select-none"
           >
             BUILT FOR
           </span>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-3.5">
+          <div className="flex flex-wrap items-center gap-x-12 gap-y-4">
             {[
               "L1 & L2 ecosystems",
               "DAO treasuries",
@@ -184,9 +199,9 @@ export default function HomePage() {
 
       {/* Access Request CTA Card */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="border border-[#181822] bg-[#0D0D13] p-10 md:p-14 rounded-sm flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+        <div className="border border-[#181822] bg-[#0D0D13] p-10 md:p-16 rounded-sm flex flex-col items-center text-center gap-8">
           {/* CTA Content */}
-          <div className="space-y-4 max-w-2xl">
+          <div className="space-y-4 max-w-4xl flex flex-col items-center">
             <p className="font-mono text-[9px] tracking-[0.22em] text-[#C84B15] uppercase select-none">
               — ACCESS · V0.4.2
             </p>
@@ -194,17 +209,15 @@ export default function HomePage() {
               className="text-3xl md:text-4xl lg:text-5xl font-light leading-[1.05] text-white tracking-tight"
               style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
             >
-              The intelligence layer for{" "}
-              <span className="italic text-[#6B6B7A] font-light">programmable</span> economics.
+              The intelligence layer for <span className="italic text-[#6B6B7A] font-light">programmable</span> economics.
             </h2>
           </div>
 
           {/* CTA Actions */}
-          <div className="flex flex-col sm:flex-row lg:flex-col gap-3.5 w-full sm:w-auto lg:w-48 flex-shrink-0">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center flex-shrink-0">
             <Link
               href="/access"
               style={{
-                background: "rgb(200, 75, 21)",
                 color: "black",
                 fontFamily: '"JetBrains Mono", ui-monospace, monospace',
                 fontSize: "11px",
@@ -217,11 +230,10 @@ export default function HomePage() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: "8px",
-                transition: "background-color 0.2s"
               }}
-              className="hover:bg-[rgb(220,95,31)] w-full text-center"
+              className="bg-[#C84B15] hover:bg-[#E05619] w-full text-center whitespace-nowrap transition-colors duration-200"
             >
-              Request access →
+              Request access →
             </Link>
             <Link
               href="/research"

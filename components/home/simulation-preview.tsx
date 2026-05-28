@@ -37,9 +37,9 @@ const EDGES: Edge[] = [
 ];
 
 const STATS = [
-  { label: "TVL ROUTED", value: "141.7M", delta: "+ 1.34%", positive: true },
-  { label: "ACTIVE WALLETS", value: "8464", delta: "+ 0.92%", positive: true },
-  { label: "GOVERNANCE LOAD", value: "0.63", delta: "- 0.57%", positive: false },
+  { label: "TVL ROUTED", value: "146.0M", delta: "+ 0.24%", positive: true },
+  { label: "ACTIVE WALLETS", value: "8464", delta: "+ 1.04%", positive: true },
+  { label: "GOVERNANCE LOAD", value: "0.64", delta: "- 0.70%", positive: false },
 ];
 
 function nodeById(id: string) {
@@ -59,9 +59,9 @@ export function SimulationPreview() {
   }, []);
 
   return (
-    <div className="ml-card p-0 overflow-hidden h-full bg-[#0D0D13]">
+    <div className="ml-card p-0 overflow-hidden h-full bg-[#111317]">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-ml-bg-border/60">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-ml-bg-border/60 bg-[#14181E]">
         <div className="flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 bg-[#C84B15]" />
           <span className="mono-label text-ml-text-primary text-[10px]">
@@ -69,12 +69,12 @@ export function SimulationPreview() {
           </span>
         </div>
         <span className="mono-label text-ml-text-muted text-[10px]">
-          RUN 0077 · EPOCH 142
+          RUN 0438 · EPOCH 142
         </span>
       </div>
 
       {/* Graph */}
-      <div className="relative bg-[#09090D]" style={{ height: 260 }}>
+      <div className="relative bg-[#111317]" style={{ height: 260 }}>
         <svg
           viewBox="0 0 640 300"
           className="w-full h-full animate-fade-in"
@@ -160,8 +160,15 @@ export function SimulationPreview() {
         {STATS.map(({ label, value, delta, positive }) => (
           <div key={label} className="px-4 py-3">
             <p className="mono-label text-[8.5px] text-ml-text-muted mb-1.5">{label}</p>
-            <p className="stat-value text-[22px] font-normal font-sans leading-none tracking-tight mb-1 text-ml-text-primary">
-              {value}
+            <p className="stat-value text-[22px] font-normal font-sans leading-none tracking-tight mb-1 text-ml-text-primary flex items-baseline">
+              {value.endsWith("M") ? (
+                <>
+                  {value.slice(0, -1)}
+                  <span className="text-xs text-ml-text-muted ml-0.5 select-none font-sans font-normal">M</span>
+                </>
+              ) : (
+                value
+              )}
             </p>
             <p className={`font-mono text-[9px] ${positive ? "text-ml-orange" : "text-ml-text-muted/60"}`}>
               {delta}
@@ -171,8 +178,8 @@ export function SimulationPreview() {
       </div>
 
       {/* Bottom attribution banner inside card */}
-      <div className="bg-[#09090D] border-t border-ml-bg-border/40 px-4 py-2 flex items-center justify-between text-[8px] font-mono text-ml-text-muted/50 select-none">
-        <span>LCC: governance load attributed | peak 0.28</span>
+      <div className="bg-[#0E1013] border-t border-ml-bg-border/40 px-4 py-2.5 flex items-center justify-between text-[9px] font-mono text-ml-text-muted/70 select-none">
+        <span>[LOG] treasury rebalance: 12.4% &rarr; reserve_A</span>
       </div>
     </div>
   );

@@ -75,6 +75,11 @@ export default function AccessPage() {
                     online
                   </span>
                 </div>
+                {/* Row 1.5 */}
+                <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
+                  <span>SIMULATIONS RUN</span>
+                  <span className="text-ml-text-primary font-medium lowercase">142</span>
+                </div>
                 {/* Row 2 */}
                 <div className="flex justify-between items-center py-2.5 border-t border-[rgb(28,32,38)] font-mono text-[10px] tracking-wider uppercase text-ml-text-muted">
                   <span>PARTNER DEPLOYMENTS</span>
@@ -200,9 +205,9 @@ export default function AccessPage() {
 
               <button
                 type="submit"
-                className="w-full bg-[#C84B15] hover:bg-[#E05A1F] text-white hover:text-white font-mono text-[10.5px] tracking-wider uppercase py-3 transition-all duration-200 rounded-sm flex items-center justify-center gap-2 font-medium"
+                className="w-full bg-[#C84B15] hover:bg-[#E05619] text-white hover:text-white font-mono text-[10.5px] tracking-wider uppercase py-3 transition-all duration-200 rounded-sm flex items-center justify-center gap-2 font-medium"
               >
-                Submit request →
+                Submit request →
               </button>
             </form>
           )}

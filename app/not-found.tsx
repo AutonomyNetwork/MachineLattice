@@ -20,9 +20,9 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="bg-[#C84B15] hover:bg-[#E05A1F] text-white text-xs font-mono tracking-wider uppercase px-6 py-3.5 transition-all duration-200 rounded-sm"
+        className="bg-[#C84B15] hover:bg-[#E05619] text-white text-xs font-mono tracking-wider uppercase px-6 py-3.5 transition-all duration-200 rounded-sm"
       >
-        Return to Home →
+        Return to Home →
       </Link>
     </div>
   );

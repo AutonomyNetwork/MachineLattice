@@ -29,21 +29,17 @@ export const metadata: Metadata = {
     default: "Machine Lattice",
     template: "%s | Machine Lattice",
   },
-  description:
-    "Economic simulation infrastructure for blockchain ecosystems. Model how liquidity, incentives, and governance will behave — before the chain decides for you.",
-  keywords: [
-    "blockchain simulation",
-    "economic modeling",
-    "DeFi",
-    "governance",
-    "liquidity",
-    "tokenomics",
-  ],
+  description: "Economic simulation infrastructure for blockchain ecosystems.",
+  keywords: ['blockchain simulation', 'economic modeling', 'DeFi', 'governance simulation', 'liquidity modeling', 'tokenomics', 'incentive design', 'treasury management', 'L2 economics', 'protocol design', 'wallet behavior', 'capital simulation'],
   openGraph: {
+    siteName: "Machine Lattice",
     title: "Machine Lattice",
     description: "Economic simulation infrastructure for blockchain ecosystems.",
     type: "website",
   },
+  twitter: {
+    site: "@machinelattice",
+  }
 };
 
 export default function RootLayout({
@@ -58,7 +54,14 @@ export default function RootLayout({
         <div 
           className="fixed inset-0 pointer-events-none select-none" 
           style={{
-            background: "radial-gradient(at 20% 0%, rgba(58, 24, 8, 0.133) 0%, transparent 45%), radial-gradient(at 80% 100%, rgb(10, 26, 34) 0%, transparent 50%), rgb(10, 11, 13)",
+            backgroundImage: `
+              linear-gradient(to right, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+              radial-gradient(at 20% 0%, rgba(58, 24, 8, 0.133) 0%, transparent 45%),
+              radial-gradient(at 80% 100%, rgb(10, 26, 34) 0%, transparent 50%)
+            `,
+            backgroundColor: "rgb(10, 11, 13)",
+            backgroundSize: "86px 86px, 86px 86px, 100% 100%, 100% 100%",
             zIndex: 0
           }}
         />

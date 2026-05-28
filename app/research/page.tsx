@@ -1,50 +1,29 @@
 import type { Metadata } from "next";
-import { StaggeredReveal, StaggeredItem, InteractiveRow } from "@/components/layout/reveal";
+import { StaggeredReveal, StaggeredItem } from "@/components/layout/reveal";
+import { ResearchContent } from "@/components/research/research-content";
 
 export const metadata: Metadata = {
-  title: "Research",
-  description:
-    "The economic intelligence layer is being written, openly. Working papers, simulation methodology, and field notes from deployments.",
+  title: "Research — Working Papers & Field Notes | Machine Lattice",
+  description: "Working papers on wallet-cohort modeling, sybil yield distortion, treasury rebalancing, and predictive governance. Published openly.",
+  openGraph: {
+    title: "The Economic Intelligence Layer, Written Openly — Machine Lattice",
+    description: "Working papers on wallet-cohort modeling, sybil yield distortion, treasury rebalancing, and predictive governance.",
+    images: [
+      {
+        url: "/images/og-research.png",
+        width: 1200,
+        height: 630,
+        alt: "The Economic Intelligence Layer, Written Openly — Machine Lattice",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Economic Intelligence Layer, Written Openly — Machine Lattice",
+    description: "Working papers on wallet-cohort modeling, sybil yield distortion, treasury rebalancing, and predictive governance.",
+    images: ["/images/og-research.png"],
+  },
 };
-
-const PAPERS = [
-  {
-    id: "RP-014",
-    year: "2026",
-    month: "MAR",
-    title: "Wallet-cohort modeling under emission compression",
-    description:
-      "A behavioral framework for predicting cohort-level retention when emission curves are compressed in mature L2 ecosystems.",
-    readTime: "22 MIN",
-  },
-  {
-    id: "RP-013",
-    year: "2026",
-    month: "FEB",
-    title: "Sybil yield distortion in incentive design",
-    description:
-      "Empirical analysis of sybil-driven yield distortion across nine launchpad programs and a proposed filtering protocol.",
-    readTime: "18 MIN",
-  },
-  {
-    id: "RP-012",
-    year: "2026",
-    month: "JAN",
-    title: "Treasury rebalance under correlated drawdowns",
-    description:
-      "Stress-testing multi-vault DAO treasuries against synchronized liquidity events using lattice simulation runtime.",
-    readTime: "26 MIN",
-  },
-  {
-    id: "RP-011",
-    year: "2025",
-    month: "DEC",
-    title: "Predictive governance: from sentiment to behavior",
-    description:
-      "Moving the governance modeling field from sentiment-based heuristics to behavior-grounded simulation primitives.",
-    readTime: "31 MIN",
-  },
-];
 
 export default function ResearchPage() {
   return (
@@ -73,42 +52,8 @@ export default function ResearchPage() {
         </StaggeredItem>
       </StaggeredReveal>
 
-      {/* Divider */}
-      <div className="border-t border-[rgb(28,32,38)] mb-0" />
-
-      {/* Papers list */}
-      <div className="divide-y divide-[rgb(28,32,38)]">
-        {PAPERS.map(({ id, year, month, title, description, readTime }) => (
-          <InteractiveRow key={id}>
-            <div className="group py-8 grid grid-cols-1 md:grid-cols-[100px_100px_1fr_90px] gap-4 items-start hover:bg-[rgb(14,16,19)] px-4 -mx-4 transition-all duration-300 cursor-pointer rounded-sm">
-              {/* Orange ID label */}
-              <span className="text-[10px] font-semibold text-[#C84B15] tracking-wider font-mono">
-                {id}
-              </span>
-              {/* Date label */}
-              <span className="text-[11px] text-[#6B6B7A] tracking-wider font-mono">
-                {year} · {month}
-              </span>
-              {/* Title & Description Column */}
-              <div className="space-y-1.5">
-                <h2
-                  className="text-[24px] font-light text-white group-hover:text-[#C84B15] transition-colors duration-200 leading-[1.05] tracking-tight"
-                  style={{ fontFamily: "var(--font-fraunces, Georgia, serif)" }}
-                >
-                  {title}
-                </h2>
-                <p className="text-[14px] text-[#8A8A9A] leading-relaxed max-w-2xl">
-                  {description}
-                </p>
-              </div>
-              {/* Read Time with dynamic orange hover arrow */}
-              <span className="text-[10px] text-[#6B6B7A] group-hover:text-white transition-colors duration-200 font-mono tracking-widest text-right flex items-center justify-end gap-1.5">
-                {readTime} <span className="text-[#6B6B7A] group-hover:text-[#C84B15] transition-colors duration-200">→</span>
-              </span>
-            </div>
-          </InteractiveRow>
-        ))}
-      </div>
+      {/* Featured Paper + Filter Tabs + Paper Rows */}
+      <ResearchContent />
     </div>
   );
 }

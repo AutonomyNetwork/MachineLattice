@@ -1,11 +1,29 @@
 import { SimulationsList } from "@/components/simulations/simulations-list";
 import { StaggeredReveal, StaggeredItem } from "@/components/layout/reveal";
+import { TryItOutCTA } from "@/components/simulations/try-it-out-cta";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Simulations",
-  description:
-    "Selected runs from live ecosystems. A small sample of recent simulation runs from partners across L1s, L2s, DAOs, and launchpads.",
+  title: "Simulations — Live Runs from Partner Ecosystems | Machine Lattice",
+  description: "Selected simulation runs from live L1s, L2s, DAOs, and launchpads. Emission compression, treasury rebalancing, governance modeling, and more.",
+  openGraph: {
+    title: "Simulation Runs from Live Ecosystems — Machine Lattice",
+    description: "Explore real runs: emission curves, treasury stress tests, governance concentration, sybil filtering, and more.",
+    images: [
+      {
+        url: "/images/og-simulations.png",
+        width: 1200,
+        height: 630,
+        alt: "Simulation Runs from Live Ecosystems — Machine Lattice",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Simulation Runs from Live Ecosystems — Machine Lattice",
+    description: "Explore real runs: emission curves, treasury stress tests, governance concentration, sybil filtering, and more.",
+    images: ["/images/og-simulations.png"],
+  },
 };
 
 export default function SimulationsPage() {
@@ -40,6 +58,9 @@ export default function SimulationsPage() {
       </StaggeredReveal>
 
       <SimulationsList />
+
+      {/* Try It Out Live CTA */}
+      <TryItOutCTA />
     </div>
   );
 }

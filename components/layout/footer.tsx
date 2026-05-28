@@ -37,16 +37,6 @@ export function Footer() {
                   Simulations
                 </Link>
               </li>
-              <li>
-                <Link href="/product#runtime" className="hover:text-ml-text-primary transition-colors">
-                  Runtime
-                </Link>
-              </li>
-              <li>
-                <Link href="/status" className="hover:text-ml-text-primary transition-colors">
-                  Status
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -61,18 +51,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/methodology" className="hover:text-ml-text-primary transition-colors">
-                  Methodology
-                </Link>
-              </li>
-              <li>
                 <Link href="/field-notes" className="hover:text-ml-text-primary transition-colors">
                   Field notes
                 </Link>
               </li>
               <li>
-                <Link href="/glossary" className="hover:text-ml-text-primary transition-colors">
-                  Glossary
+                <Link href="/methodology" className="hover:text-ml-text-primary transition-colors">
+                  Methodology
+                </Link>
+              </li>
+              <li>
+                <Link href="/article" className="hover:text-ml-text-primary transition-colors">
+                  Article
                 </Link>
               </li>
             </ul>
@@ -86,21 +76,6 @@ export function Footer() {
               <li>
                 <Link href="/access" className="hover:text-ml-text-primary transition-colors">
                   Access
-                </Link>
-              </li>
-              <li>
-                <Link href="/partners" className="hover:text-ml-text-primary transition-colors">
-                  Partners
-                </Link>
-              </li>
-              <li>
-                <Link href="/careers" className="hover:text-ml-text-primary transition-colors">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-ml-text-primary transition-colors">
-                  Contact
                 </Link>
               </li>
               <li>
